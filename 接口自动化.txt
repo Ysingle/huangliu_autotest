@@ -1,0 +1,94 @@
+*** Settings ***
+Library           RequestsLibrary
+Library           RequestsLibrary
+
+*** Test Cases ***
+登录接口
+    ${header_dict}    Create Dictionary    Content-Type=application/x-www-form-urlencoded    Cookie=session=eyJfaWQiOiJlN2FiNThlNWVhMTE1OGQwYjgzY2M5ZDg3YWM3OWU3NCIsInVzZXJuYW1lIjoiQXV0b2xpbmsifQ.XlUI2A.n5T-vl7V1WuOG6ZauC32g93qLlY
+    Create Session    autolink_host    http://127.0.0.1:5555
+    ${post_data}    Create Dictionary    username=AutoLink    password=123456
+    ${my_response}    Post Request    autolink_host    /api/v1/auth/    data=${post_data}    headers=${header_dict}
+    log    ${my_response.status_code}
+    log    ${my_response.content}
+
+登录
+    Create Session    autolink_host    http://127.0.0.1:5555
+    ${header_dict}    Create Dictionary    Content-Type=application/x-www-form-urlencoded    Cookie=session=eyJfaWQiOiJlN2FiNThlNWVhMTE1OGQwYjgzY2M5ZDg3YWM3OWU3NCIsInVzZXJuYW1lIjoiQXV0b2xpbmsifQ.XlUI2A.n5T-vl7V1WuOG6ZauC32g93qLlY
+    ${post_data}    Create Dictionary    username=AutoLink    password=123456
+    ${response}    Post Request    autolink_host    /api/v1/auth/    data=${post_data}    headers=${header_dict}
+    log    ${response}
+    log    ${response.content}
+    log    ${response.headers}
+    sleep    5
+
+编辑密码
+    ${header_dict}    Create Dictionary    Content-Type=application/x-www-form-urlencoded    Cookie=session=eyJfaWQiOiJlN2FiNThlNWVhMTE1OGQwYjgzY2M5ZDg3YWM3OWU3NCIsInVzZXJuYW1lIjoiQXV0b2xpbmsifQ.XlUI2A.n5T-vl7V1WuOG6ZauC32g93qLlY
+    Create Session    autolink_host    http://127.0.0.1:5555
+    ${post_data}    Create Dictionary    fullname=BqFvK    username=BqFvK    email=111    password=111    new_password=111    method=edit
+    ${my_response}    Post Request    autolink_host    /api/v1/user/    data=${post_data}    headers=${header_dict}
+    log    ${my_response.status_code}
+    log    ${my_response.content}
+
+编辑更新时间
+    ${header_dict}    Create Dictionary    Content-Type=application/x-www-form-urlencoded    Cookie=session=eyJfaWQiOiJlN2FiNThlNWVhMTE1OGQwYjgzY2M5ZDg3YWM3OWU3NCIsInVzZXJuYW1lIjoiQXV0b2xpbmsifQ.XlUI2A.n5T-vl7V1WuOG6ZauC32g93qLlY
+    Create Session    autolink_host    http://127.0.0.1:5555
+    ${post_data}    Create Dictionary    name=标准项目组织结构_demo    method=edit    cron=0 0 1 1 1 1
+    ${my_response}    Post Request    autolink_host    /api/v1/task_list/    data=${post_data}    headers=${header_dict}
+    log    ${my_response.status_code}
+    log    ${my_response.content}
+
+编辑密码2
+    ${header_dict}    Create Dictionary    Content-Type=application/x-www-form-urlencoded    Cookie=session=eyJfaWQiOiJlN2FiNThlNWVhMTE1OGQwYjgzY2M5ZDg3YWM3OWU3NCIsInVzZXJuYW1lIjoiQXV0b2xpbmsifQ.XlUI2A.n5T-vl7V1WuOG6ZauC32g93qLlY
+    Create Session    autolink_host    http://127.0.0.1:5555
+    ${post_data}    Create Dictionary    fullname=123dfg    username=123    email=123    password=123456    new_password=123456    method=edit
+    ${my_response}    Post Request    autolink_host    /api/v1/user/    data=${post_data}    headers=${header_dict}
+    log    ${my_response.status_code}
+    log    ${my_response.content}
+
+删除用户
+    ${header_dict}    Create Dictionary    Content-Type=application/x-www-form-urlencoded    Cookie=session=eyJfaWQiOiJlN2FiNThlNWVhMTE1OGQwYjgzY2M5ZDg3YWM3OWU3NCIsInVzZXJuYW1lIjoiQXV0b2xpbmsifQ.XlUI2A.n5T-vl7V1WuOG6ZauC32g93qLlY
+    Create Session    autolink_host    http://127.0.0.1:5555
+    ${post_data}    Create Dictionary    method=delete    username=ADJbH
+    ${my_response}    Post Request    autolink_host    /api/v1/user/    data=${post_data}    headers=${header_dict}
+    log    ${my_response.status_code}
+    log    ${my_response.content}
+
+启动项目
+    ${header_dict}    Create Dictionary    Content-Type=application/x-www-form-urlencoded    Cookie=session=eyJfaWQiOiJlN2FiNThlNWVhMTE1OGQwYjgzY2M5ZDg3YWM3OWU3NCIsInVzZXJuYW1lIjoiQXV0b2xpbmsifQ.XlUI2A.n5T-vl7V1WuOG6ZauC32g93qLlY
+    Create Session    autolink_host    http://127.0.0.1:5555
+    ${post_data}    Create Dictionary    method=start    name=标准项目组织结构_demo    cron=0 0 1 1 1 1
+    ${my_response}    Post Request    autolink_host    /api/v1/task_list/    data=${post_data}    headers=${header_dict}
+    log    ${my_response.status_code}
+    log    ${my_response.content}
+
+停止项目
+    ${header_dict}    Create Dictionary    Content-Type=application/x-www-form-urlencoded    Cookie=session=eyJfaWQiOiJlN2FiNThlNWVhMTE1OGQwYjgzY2M5ZDg3YWM3OWU3NCIsInVzZXJuYW1lIjoiQXV0b2xpbmsifQ.XlUI2A.n5T-vl7V1WuOG6ZauC32g93qLlY
+    Create Session    autolink_host    http://127.0.0.1:5555
+    ${post_data}    Create Dictionary    method=stop    name=Python测试项目_demo
+    ${my_response}    Post Request    autolink_host    /api/v1/task_list/    data=${post_data}    headers=${header_dict}
+    log    ${my_response.status_code}
+    log    ${my_response.content}
+
+通知按钮
+    ${header_dict}    Create Dictionary    Content-Type=application/x-www-form-urlencoded    Cookie=session=eyJfaWQiOiJlN2FiNThlNWVhMTE1OGQwYjgzY2M5ZDg3YWM3OWU3NCIsInVzZXJuYW1lIjoiQXV0b2xpbmsifQ.XlUI2A.n5T-vl7V1WuOG6ZauC32g93qLlY
+    Create Session    autolink_host    http://127.0.0.1:5555
+    ${post_data}    Create Dictionary    method=email    project=标准项目组织结构_demo    success_list=123    fail_list=321
+    ${my_response}    Post Request    autolink_host    /api/v1/settings/    data=${post_data}    headers=${header_dict}
+    log    ${my_response.status_code}
+    log    ${my_response.content}
+
+刷新
+    ${header_dict}    Create Dictionary    Content-Type=application/x-www-form-urlencoded    Cookie=session=eyJfaWQiOiJlN2FiNThlNWVhMTE1OGQwYjgzY2M5ZDg3YWM3OWU3NCIsInVzZXJuYW1lIjoiQXV0b2xpbmsifQ.XlUI2A.n5T-vl7V1WuOG6ZauC32g93qLlY
+    Create Session    autolink_host    http://127.0.0.1:5555
+    ${post_data}    Create Dictionary    method=query
+    ${my_response}    Post Request    autolink_host    /api/v1/task_list/?method=query    data=${post_data}    headers=${header_dict}
+    log    ${my_response.status_code}
+    log    ${my_response.content}
+
+删除用户2
+    ${header_dict}    Create Dictionary    Content-Type=application/x-www-form-urlencoded    Cookie=session=eyJfaWQiOiJlN2FiNThlNWVhMTE1OGQwYjgzY2M5ZDg3YWM3OWU3NCIsInVzZXJuYW1lIjoiQXV0b2xpbmsifQ.XlUI2A.n5T-vl7V1WuOG6ZauC32g93qLlY
+    Create Session    autolink_host    http://127.0.0.1:5555
+    ${post_data}    Create Dictionary    method=delete    username=d
+    ${my_response}    Post Request    autolink_host    /api/v1/user/    data=${post_data}    headers=${header_dict}
+    log    ${my_response.status_code}
+    log    ${my_response.content}

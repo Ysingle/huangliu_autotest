@@ -1,0 +1,72 @@
+*** Settings ***
+Resource          基础功能关键字.txt
+Library           Selenium2Library
+
+*** Test Cases ***
+点击项目管理按钮
+    登录    AutoLink    123456
+    sleep    3s
+    Click Element    //span[text()="系统管理"]
+    sleep    3s
+    Close Browser
+
+点击刷新
+    登录    AutoLink    123456
+    sleep    3s
+    Click Element    //span[text()="系统管理"]
+    sleep    3s
+    select frame    //iframe[@src="/user"]
+    sleep    2s
+    Click Element    //span[text()="刷新"]
+    sleep    2s
+    Close Browser
+
+点击增加
+    登录    AutoLink    123456
+    sleep    3s
+    Click Element    //span[text()="系统管理"]
+    sleep    3s
+    select frame    //iframe[@src="/user"]
+    sleep    2s
+    Click Element    //span[text()="新增"]
+    sleep    2s
+    Close Browser
+
+选择项目后点击编辑
+    登录    AutoLink    123456
+    sleep    3s
+    Click Element    //span[text()="系统管理"]
+    sleep    3s
+    select frame    //iframe[@src="/user"]
+    sleep    2s
+    Click Element    //div[text()="123"]
+    sleep    2s
+    Click Element    //span[text()="编辑"]
+    sleep    2s
+    Close Browser
+
+选定项目后点击删除
+    登录    AutoLink    123456
+    sleep    3s
+    Click Element    //span[text()="系统管理"]
+    sleep    3s
+    select frame    //iframe[@src="/user"]
+    sleep    2s
+    Click Element    //div[text()="123"]
+    sleep    2s
+    Click Element    //span[text()="删除"]
+    sleep    2s
+    Close Browser
+
+选定项目后点击SMTP
+    登录    AutoLink    123456
+    sleep    3s
+    Click Element    //span[text()="系统管理"]
+    sleep    3s
+    select frame    //iframe[@src="/user"]
+    sleep    2s
+    Click Element    //div[text()="123"]
+    sleep    2s
+    Click Element    //span[text()="SMTP"]
+    sleep    2s
+    Close Browser

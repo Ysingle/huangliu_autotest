@@ -1,0 +1,63 @@
+*** Settings ***
+Resource          基础功能关键字.txt
+Library           Selenium2Library
+
+*** Test Cases ***
+点击图标 “+”
+    登录    AutoLink    123456
+    sleep    3s
+    Click Element    //div[@id="_easyui_tree_1"]/span[1]
+    sleep    3s
+    Close Browser
+
+鼠标放在Autolink上，点击鼠标右键
+    登录    AutoLink    123456
+    sleep    3s
+    right click element    //span[text()="AutoLink"]
+    sleep    3s
+    Close Browser
+
+http接口测试项目点击图标 “+”
+    登录    AutoLink    123456
+    sleep    3s
+    Click Element    //div[@id="_easyui_tree_2"]/span[2]
+    sleep    3s
+    Close Browser
+
+鼠标放在项目上，点击鼠标右键
+    登录    AutoLink    123456
+    sleep    3s
+    right click element    //span[text()="HTTP接口测试项目_demo"]
+    sleep    3s
+    Close Browser
+
+000点击图标 “+”
+    登录    AutoLink    123456
+    sleep    3s
+    Click Element    //div[@id="_easyui_tree_2"]/span[2]
+    sleep    3s
+    Click Element    //div[@id="_easyui_tree_5"]/span[3]
+    sleep    3s
+    Close Browser
+
+鼠标放在文件夹上，点击鼠标右键
+    登录    AutoLink    123456
+    sleep    3s
+    Click Element    //div[@id="_easyui_tree_2"]/span[2]
+    sleep    3s
+    Click Element    //div[@id="_easyui_tree_5"]/span[3]
+    sleep    3s
+    right click element    //span[text()="000_resources"]
+    sleep    3s
+    Close Browser
+
+打开文件，双击txt文件
+    登录    AutoLink    123456
+    sleep    3s
+    Click Element    //div[@id="_easyui_tree_2"]/span[2]
+    sleep    3s
+    Click Element    //div[@id="_easyui_tree_5"]/span[3]
+    sleep    3s
+    Double Click Element    //div[@id="_easyui_tree_8"]/span[5]
+    sleep    3s
+    Close Browser

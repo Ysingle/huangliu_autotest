@@ -1,0 +1,13 @@
+*** Keywords ***
+登录
+    [Arguments]    ${username}    ${password}
+    Open Browser    http://127.0.0.1:5555    chrome
+    sleep    5s
+    ${login_page_have_string}    Get Text    //h2
+    Should Be Equal    ${login_page_have_string}    All in AutoLink
+    Input Text    //*[@id="username"]    ${username}
+    sleep    3s
+    Input Text    //*[@id="password"]    ${password}
+    sleep    3s
+    Click Element    //*[@value="登录"]
+    sleep    3s

@@ -1,0 +1,9 @@
+*** Settings ***
+Library           RequestsLibrary
+
+*** Test Cases ***
+test1
+    Create Session    java_host    http://127.0.0.1:9898
+    ${my_response}    Get Request    java_host    /index/yut
+    log    ${my_response.status_code}
+    log    ${my_response.content}
